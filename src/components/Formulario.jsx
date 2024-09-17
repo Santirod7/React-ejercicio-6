@@ -24,6 +24,11 @@ localStorage.setItem('listadeColoreskey', JSON.stringify(arrayColores))
 const arrayFiltrado = arrayColores.filter((elementocolor)=> elementocolor!==nombrecajacolor)
 setArrayColores(arrayFiltrado)
   }
+  const [color, setColor] = useState('#ffffff'); // Valor inicial blanco
+
+  const handleColorChange = (e) => {
+    setColor(e.target.value); // Actualiza el estado con el valor del input
+  };
 
   const onSubmit = (data) => {
 console.log(data);
@@ -33,9 +38,18 @@ reset()
     
     return (
         <section className='container '>
-    <Form onSubmit={handleSubmit(onSubmit)}>
+            <div className='row justify-content-between'>
+    <Form className='col-5 border border-2 border-end' onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-1" >
-        <Form.Label className='fw-bolder mb-0'>Color</Form.Label>
+        <div className='d-flex justify-content-center'>
+      <div className='mt-4 border border-1 border-black'
+        style={{
+            width: '200px',
+            height: '200px',
+            backgroundColor: color, 
+        }}
+        />
+        </div>
         <Form.Text className="d-flex mb-2 text-muted">
           {errors.color?.message}
         </Form.Text>
@@ -49,15 +63,20 @@ reset()
           value:20,
           message: "El campo debe tener máximo 20 carácteres"
         }
-         })} placeholder="Agrega lo que quieres realizar" />
+         })} value={color}
+         onChange={handleColorChange}
+         placeholder="#FF5733" />
     </Form.Group>
         <div className='d-flex justify-content-center'>
-      <Button variant="primary" className='text-center mb-5 border border-2 border-black' type="submit" >
+      <Button variant="primary" className='text-center my-2 border border-1 border-black' type="submit" >
         Añadir a paleta
       </Button>
         </div>
-    </Form>
+    </Form> 
+    <div className='col-7 border border-2'>
     <Paneldecolores arrayColores={arrayColores} borrarColor={borrarColor}></Paneldecolores>
+    </div>
+    </div>
         </section>
 
     );

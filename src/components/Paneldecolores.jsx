@@ -1,8 +1,19 @@
-const Paneldecolores = () => {
+import Card from 'react-bootstrap/Card';
+import Cajacolor from './Cajacolor';
+import CardGroup from 'react-bootstrap/CardGroup';
+const Paneldecolores = (arrayColores, borrarColor) => {
+    
     return (
-        <div>
-            
-        </div>
+        <article>
+            <CardGroup>
+
+          <Card className="text-center">
+      
+        <Cajacolor arrayColores={arrayColores} ></Cajacolor>
+     
+    </Card>  
+            </CardGroup>
+        </article>
     );
 };
 
