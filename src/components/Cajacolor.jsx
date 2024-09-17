@@ -4,7 +4,7 @@ import '../App.css'
 
 const Cajacolor = ({color, borrarColor}) => {
     return (
-        <div className='col-4 my-2'>
+        <div className='col-6 col-lg-4 my-2'>
         <Card>
 <Card.Header>
 <h6>{color} </h6>
