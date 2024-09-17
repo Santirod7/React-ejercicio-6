@@ -58,7 +58,7 @@ Swal.fire({
     return (
         <section className='container '>
             <div className='row justify-content-between'>
-    <Form className='col-5 align-content-center border border-2 border-end' onSubmit={handleSubmit(onSubmit)}>
+    <Form className='col-12 col-lg-5 align-content-center border border-2 border-end' onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-1" >
             <h4 className='d-block fw-bold my-1'>Color actual</h4>
         <div className='d-flex justify-content-center'>
@@ -91,7 +91,7 @@ Swal.fire({
       </Button>
         </div>
     </Form> 
-    <div className='col-7 border border-2'>
+    <div className='col-12 col-lg-7 border border-2'>
     <Paneldecolores arrayColores={arrayColores} borrarColor={borrarColor}></Paneldecolores>
     </div>
     </div>
