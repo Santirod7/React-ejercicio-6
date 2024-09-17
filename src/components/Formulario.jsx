@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Paneldecolores from './Paneldecolores'
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
+import '../App.css'
+import Swal from 'sweetalert2'
 
 
 
@@ -23,29 +25,45 @@ localStorage.setItem('listadeColoreskey', JSON.stringify(arrayColores))
   const borrarColor = (nombrecajacolor)=> {
 const arrayFiltrado = arrayColores.filter((elementocolor)=> elementocolor!==nombrecajacolor)
 setArrayColores(arrayFiltrado)
+Swal.fire({
+    icon: "success",
+    title: "Color borrado",
+  }); 
   }
-  const [color, setColor] = useState('#ffffff'); // Valor inicial blanco
+  const [color, setColor] = useState('#ffffff'); 
 
   const handleColorChange = (e) => {
-    setColor(e.target.value); // Actualiza el estado con el valor del input
+    setColor(e.target.value); 
   };
-
   const onSubmit = (data) => {
-console.log(data);
-setArrayColores ([...arrayColores, data.color])
-reset()
+    const elementoRepetido = arrayColores.filter((elementocolor)=> elementocolor===data.color)
+    if(elementoRepetido[0]===data.color){
+        console.log('Error, color ya ingresado')
+        Swal.fire({
+            icon: "error",
+            title: "Error al agregar color",
+            text: "Este color ya fue ingresado",
+          });    
+    } else{
+        setArrayColores ([...arrayColores, data.color])
+        Swal.fire({
+            icon: "success",
+            title: "Color agregado con éxito",
+          }); 
+        reset()
+    }
+   
   }
     
     return (
         <section className='container '>
             <div className='row justify-content-between'>
-    <Form className='col-5 border border-2 border-end' onSubmit={handleSubmit(onSubmit)}>
+    <Form className='col-5 align-content-center border border-2 border-end' onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-1" >
+            <h4 className='d-block fw-bold my-1'>Color actual</h4>
         <div className='d-flex justify-content-center'>
-      <div className='mt-4 border border-1 border-black'
+      <div className='my-2 border border-1 border-black alturaColoractual'
         style={{
-            width: '200px',
-            height: '200px',
             backgroundColor: color, 
         }}
         />
